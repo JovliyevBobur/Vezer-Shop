@@ -131,6 +131,44 @@ async def get_user_count() -> int:
         return result.scalar()
 
 
+async def is_user_registered(telegram_id: int) -> bool:
+    """Check if user completed registration"""
+    user = await get_user(telegram_id)
+    return user.is_registered if user else False
+
+
+async def update_user_registration(telegram_id: int, first_name: str, last_name: str,
+                                   age: int, phone: str, location_lat: float, 
+                                   location_lon: float) -> Optional[User]:
+    """Complete user registration with full info"""
+    async with get_session() as session:
+        result = await session.execute(
+            select(User).where(User.telegram_id == telegram_id)
+        )
+        user = result.scalar_one_or_none()
+        
+        if user:
+            user.first_name = first_name
+            user.last_name = last_name
+            user.age = age
+            user.phone = phone
+            user.location_lat = location_lat
+            user.location_lon = location_lon
+            user.is_registered = True
+            await session.commit()
+        
+        return user
+
+
+async def get_user_full_info(telegram_id: int) -> Optional[User]:
+    """Get user with all registration info"""
+    async with get_session() as session:
+        result = await session.execute(
+            select(User).where(User.telegram_id == telegram_id)
+        )
+        return result.scalar_one_or_none()
+
+
 # ==========================================
 # Category Operations
 # ==========================================

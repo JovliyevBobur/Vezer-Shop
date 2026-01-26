@@ -4,9 +4,14 @@
 from telegram import Update
 from telegram.ext import ContextTypes, ConversationHandler
 
-from database import get_or_create_user, update_user_language, get_user
+from database import get_or_create_user, update_user_language, get_user, is_user_registered
 from utils import get_text, get_language_keyboard, get_main_menu_keyboard
 from config import ADMIN_IDS
+
+# Import registration states for return
+from handlers.registration import (
+    REG_FIRST_NAME, start_registration
+)
 
 
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
@@ -35,7 +40,7 @@ async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     )
 
 
-async def language_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+async def language_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
     """Handle language selection callback"""
     query = update.callback_query
     await query.answer()
@@ -49,15 +54,21 @@ async def language_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) 
     # Update user language in database
     await update_user_language(user_id, lang)
     
-    # Get updated user
-    db_user = await get_user(user_id)
-    is_admin = user_id in ADMIN_IDS
+    # Check if user is registered
+    is_registered = await is_user_registered(user_id)
     
-    # Send confirmation and main menu
+    # Send confirmation
     await query.edit_message_text(
         get_text("language_selected", lang),
         parse_mode="HTML"
     )
+    
+    if not is_registered:
+        # Start registration process
+        return await start_registration(update, context, lang)
+    
+    # User is registered, show main menu
+    is_admin = user_id in ADMIN_IDS
     
     # Send main menu with reply keyboard
     await query.message.reply_text(
@@ -65,6 +76,9 @@ async def language_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) 
         parse_mode="HTML",
         reply_markup=get_main_menu_keyboard(lang, is_admin)
     )
+    
+    return ConversationHandler.END
+
 
 
 async def main_menu_callback(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:

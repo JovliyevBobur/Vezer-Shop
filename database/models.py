@@ -19,6 +19,10 @@ class User(Base):
     last_name = Column(String(255), nullable=True)
     language = Column(String(10), default="uz")
     phone = Column(String(20), nullable=True)
+    age = Column(Integer, nullable=True)
+    location_lat = Column(Float, nullable=True)
+    location_lon = Column(Float, nullable=True)
+    is_registered = Column(Boolean, default=False)
     is_admin = Column(Boolean, default=False)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
@@ -72,6 +76,8 @@ class Product(Base):
     price = Column(Float, nullable=False)
     discount_percent = Column(Integer, default=0)  # 0-100
     image_url = Column(String(500), nullable=True)
+    sizes = Column(String(100), nullable=True)  # Comma-separated: S,M,L,XL
+    colors = Column(String(200), nullable=True)  # Comma-separated: Qora,Oq,Ko'k
     stock = Column(Integer, default=0)
     is_active = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
@@ -116,6 +122,8 @@ class CartItem(Base):
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
     quantity = Column(Integer, default=1)
+    selected_size = Column(String(20), nullable=True)
+    selected_color = Column(String(50), nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # Relationships
@@ -163,6 +171,8 @@ class OrderItem(Base):
     product_name = Column(String(255), nullable=False)  # Store name at time of order
     quantity = Column(Integer, nullable=False)
     price = Column(Float, nullable=False)  # Store price at time of order
+    selected_size = Column(String(20), nullable=True)
+    selected_color = Column(String(50), nullable=True)
     
     # Relationships
     order = relationship("Order", back_populates="items")

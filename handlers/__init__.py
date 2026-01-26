@@ -80,6 +80,21 @@ from handlers.admin import (
     ADD_CAT_NAME_EN
 )
 
+from handlers.registration import (
+    start_registration,
+    reg_first_name,
+    reg_last_name,
+    reg_age,
+    reg_phone,
+    reg_location,
+    reg_cancel,
+    REG_FIRST_NAME,
+    REG_LAST_NAME,
+    REG_AGE,
+    REG_PHONE,
+    REG_LOCATION
+)
+
 __all__ = [
     # Start
     "start_command",

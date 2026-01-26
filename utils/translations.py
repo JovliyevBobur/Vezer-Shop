@@ -408,6 +408,166 @@ TRANSLATIONS = {
         "uz": "❌ Noto'g'ri kiritish. Iltimos, qaytadan urinib ko'ring.",
         "ru": "❌ Неверный ввод. Пожалуйста, попробуйте еще раз.",
         "en": "❌ Invalid input. Please try again."
+    },
+    
+    # Registration
+    "reg_welcome": {
+        "uz": "👋 <b>Ro'yxatdan o'tish</b>\n\nDavom etish uchun ma'lumotlaringizni kiriting.",
+        "ru": "👋 <b>Регистрация</b>\n\nВведите свои данные для продолжения.",
+        "en": "👋 <b>Registration</b>\n\nPlease enter your information to continue."
+    },
+    
+    "reg_first_name": {
+        "uz": "📝 Ismingizni kiriting:",
+        "ru": "📝 Введите ваше имя:",
+        "en": "📝 Enter your first name:"
+    },
+    
+    "reg_last_name": {
+        "uz": "📝 Familiyangizni kiriting:",
+        "ru": "📝 Введите вашу фамилию:",
+        "en": "📝 Enter your last name:"
+    },
+    
+    "reg_age": {
+        "uz": "🎂 Yoshingizni kiriting (raqam bilan):",
+        "ru": "🎂 Введите ваш возраст (цифрами):",
+        "en": "🎂 Enter your age (numbers only):"
+    },
+    
+    "reg_phone": {
+        "uz": "📱 Telefon raqamingizni yuboring:",
+        "ru": "📱 Отправьте ваш номер телефона:",
+        "en": "📱 Send your phone number:"
+    },
+    
+    "reg_location": {
+        "uz": "📍 Joylashuvingizni yuboring:",
+        "ru": "📍 Отправьте вашу геолокацию:",
+        "en": "📍 Send your location:"
+    },
+    
+    "reg_success": {
+        "uz": "✅ <b>Ro'yxatdan o'tdingiz!</b>\n\nXush kelibsiz, {name}! Endi xarid qilishingiz mumkin.",
+        "ru": "✅ <b>Регистрация успешна!</b>\n\nДобро пожаловать, {name}! Теперь вы можете делать покупки.",
+        "en": "✅ <b>Registration successful!</b>\n\nWelcome, {name}! You can now start shopping."
+    },
+    
+    "reg_invalid_name": {
+        "uz": "❌ Ism kamida 2 ta harfdan iborat bo'lishi kerak.",
+        "ru": "❌ Имя должно содержать минимум 2 буквы.",
+        "en": "❌ Name must be at least 2 characters."
+    },
+    
+    "reg_invalid_age": {
+        "uz": "❌ Iltimos, yoshingizni to'g'ri kiriting (10-100).",
+        "ru": "❌ Пожалуйста, введите корректный возраст (10-100).",
+        "en": "❌ Please enter a valid age (10-100)."
+    },
+    
+    "reg_invalid_phone": {
+        "uz": "❌ Telefon raqami noto'g'ri. Qaytadan urinib ko'ring.",
+        "ru": "❌ Неверный номер телефона. Попробуйте еще раз.",
+        "en": "❌ Invalid phone number. Please try again."
+    },
+    
+    "reg_invalid_location": {
+        "uz": "❌ Iltimos, joylashuvingizni yuboring (tugmani bosing).",
+        "ru": "❌ Пожалуйста, отправьте геолокацию (нажмите кнопку).",
+        "en": "❌ Please send your location (press the button)."
+    },
+    
+    "reg_required": {
+        "uz": "⚠️ Ro'yxatdan o'tish majburiy. Iltimos, davom eting.",
+        "ru": "⚠️ Регистрация обязательна. Пожалуйста, продолжите.",
+        "en": "⚠️ Registration is required. Please continue."
+    },
+    
+    "btn_send_phone": {
+        "uz": "📱 Telefon raqamni yuborish",
+        "ru": "📱 Отправить номер телефона",
+        "en": "📱 Send Phone Number"
+    },
+    
+    "btn_send_location": {
+        "uz": "📍 Joylashuvni yuborish",
+        "ru": "📍 Отправить геолокацию",
+        "en": "📍 Send Location"
+    },
+    
+    # Size and Color Selection
+    "select_size": {
+        "uz": "📏 <b>Razmer tanlang:</b>",
+        "ru": "📏 <b>Выберите размер:</b>",
+        "en": "📏 <b>Select size:</b>"
+    },
+    
+    "select_color": {
+        "uz": "🎨 <b>Rang tanlang:</b>",
+        "ru": "🎨 <b>Выберите цвет:</b>",
+        "en": "🎨 <b>Select color:</b>"
+    },
+    
+    "size_selected": {
+        "uz": "✅ Razmer: {size}",
+        "ru": "✅ Размер: {size}",
+        "en": "✅ Size: {size}"
+    },
+    
+    "color_selected": {
+        "uz": "✅ Rang: {color}",
+        "ru": "✅ Цвет: {color}",
+        "en": "✅ Color: {color}"
+    },
+    
+    "cart_item_full": {
+        "uz": "• {name}\n  📏 {size} | 🎨 {color}\n  × {quantity} = {price} so'm",
+        "ru": "• {name}\n  📏 {size} | 🎨 {color}\n  × {quantity} = {price} сум",
+        "en": "• {name}\n  📏 {size} | 🎨 {color}\n  × {quantity} = {price} UZS"
+    },
+    
+    # Payment
+    "payment_title": {
+        "uz": "Vezer Shop Buyurtma",
+        "ru": "Заказ Vezer Shop",
+        "en": "Vezer Shop Order"
+    },
+    
+    "payment_description": {
+        "uz": "Buyurtma #{order_id} uchun to'lov",
+        "ru": "Оплата заказа #{order_id}",
+        "en": "Payment for order #{order_id}"
+    },
+    
+    "payment_success": {
+        "uz": "✅ <b>To'lov muvaffaqiyatli!</b>\n\nBuyurtma #{order_id} tasdiqlandi.\nTez orada siz bilan bog'lanamiz!",
+        "ru": "✅ <b>Оплата успешна!</b>\n\nЗаказ #{order_id} подтверждён.\nМы скоро свяжемся с вами!",
+        "en": "✅ <b>Payment successful!</b>\n\nOrder #{order_id} confirmed.\nWe will contact you soon!"
+    },
+    
+    "payment_failed": {
+        "uz": "❌ To'lov amalga oshmadi. Qaytadan urinib ko'ring.",
+        "ru": "❌ Оплата не прошла. Попробуйте еще раз.",
+        "en": "❌ Payment failed. Please try again."
+    },
+    
+    "btn_pay": {
+        "uz": "💳 To'lash: {amount} so'm",
+        "ru": "💳 Оплатить: {amount} сум",
+        "en": "💳 Pay: {amount} UZS"
+    },
+    
+    # Order Notification
+    "order_notification": {
+        "uz": "🆕 <b>Yangi Buyurtma #{order_id}</b>\n\n👤 Mijoz: {first_name} {last_name}\n🎂 Yosh: {age}\n📱 Telefon: {phone}\n📍 Lokatsiya: {location}\n\n🛒 <b>Mahsulotlar:</b>\n{items}\n\n💰 <b>Jami: {total} so'm</b>",
+        "ru": "🆕 <b>Новый Заказ #{order_id}</b>\n\n👤 Клиент: {first_name} {last_name}\n🎂 Возраст: {age}\n📱 Телефон: {phone}\n📍 Локация: {location}\n\n🛒 <b>Товары:</b>\n{items}\n\n💰 <b>Итого: {total} сум</b>",
+        "en": "🆕 <b>New Order #{order_id}</b>\n\n👤 Customer: {first_name} {last_name}\n🎂 Age: {age}\n📱 Phone: {phone}\n📍 Location: {location}\n\n🛒 <b>Products:</b>\n{items}\n\n💰 <b>Total: {total} UZS</b>"
+    },
+    
+    "order_item_line": {
+        "uz": "  • {name} ({size}, {color}) × {quantity} = {price}",
+        "ru": "  • {name} ({size}, {color}) × {quantity} = {price}",
+        "en": "  • {name} ({size}, {color}) × {quantity} = {price}"
     }
 }
 
