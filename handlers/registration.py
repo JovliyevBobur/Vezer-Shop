@@ -6,7 +6,7 @@ from telegram.ext import ContextTypes, ConversationHandler
 
 from database import get_user, update_user_registration
 from utils import get_text, get_main_menu_keyboard
-from config import ADMIN_IDS
+from config import ADMIN_IDS, NOTIFICATION_IDS
 
 # Registration conversation states
 REG_FIRST_NAME, REG_LAST_NAME, REG_AGE, REG_PHONE, REG_LOCATION = range(5)
@@ -177,6 +177,29 @@ async def reg_location(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
     )
     
     is_admin = user_id in ADMIN_IDS
+    
+    # Send notification to admins about new registration
+    username = update.effective_user.username or "N/A"
+    notification_text = (
+        f"🆕 <b>Yangi foydalanuvchi ro'yxatdan o'tdi!</b>\n\n"
+        f"👤 <b>ID:</b> <code>{user_id}</code>\n"
+        f"📛 <b>Username:</b> @{username}\n"
+        f"📝 <b>Ism:</b> {first_name}\n"
+        f"📝 <b>Familiya:</b> {last_name}\n"
+        f"🎂 <b>Yosh:</b> {age}\n"
+        f"📞 <b>Telefon:</b> {phone}\n"
+        f"📍 <b>Lokatsiya:</b> <a href='https://www.google.com/maps?q={lat},{lon}'>Xaritada ko'rish</a>"
+    )
+    
+    for admin_id in NOTIFICATION_IDS:
+        try:
+            await context.bot.send_message(
+                chat_id=admin_id,
+                text=notification_text,
+                parse_mode="HTML"
+            )
+        except Exception as e:
+            pass  # Ignore if admin is not available
     
     # Clear user data
     context.user_data.clear()

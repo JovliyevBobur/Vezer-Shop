@@ -45,7 +45,10 @@ from handlers import (
     ADD_PROD_DESC_UZ, ADD_PROD_DESC_RU, ADD_PROD_DESC_EN,
     ADD_PROD_PRICE, ADD_PROD_DISCOUNT, ADD_PROD_IMAGE, ADD_PROD_CATEGORY,
     BROADCAST_MESSAGE,
-    ADD_CAT_NAME_UZ, ADD_CAT_NAME_RU, ADD_CAT_NAME_EN
+    ADD_CAT_NAME_UZ, ADD_CAT_NAME_RU, ADD_CAT_NAME_EN,
+    # Registration handlers
+    reg_first_name, reg_last_name, reg_age, reg_phone, reg_location, reg_cancel,
+    REG_FIRST_NAME, REG_LAST_NAME, REG_AGE, REG_PHONE, REG_LOCATION
 )
 
 # Configure logging
@@ -171,11 +174,29 @@ def main() -> None:
     application.add_handler(add_category_conv_handler)
     
     # ==========================================
+    # Registration Conversation Handler
+    # ==========================================
+    registration_conv_handler = ConversationHandler(
+        entry_points=[CallbackQueryHandler(language_callback, pattern="^lang_")],
+        states={
+            REG_FIRST_NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, reg_first_name)],
+            REG_LAST_NAME: [MessageHandler(filters.TEXT & ~filters.COMMAND, reg_last_name)],
+            REG_AGE: [MessageHandler(filters.TEXT & ~filters.COMMAND, reg_age)],
+            REG_PHONE: [MessageHandler(filters.TEXT | filters.CONTACT, reg_phone)],
+            REG_LOCATION: [MessageHandler(filters.LOCATION, reg_location)],
+        },
+        fallbacks=[
+            CommandHandler("start", start_command),
+            CommandHandler("cancel", reg_cancel)
+        ],
+        allow_reentry=True
+    )
+    application.add_handler(registration_conv_handler)
+    
+    
+    # ==========================================
     # Callback Query Handlers
     # ==========================================
-    
-    # Language selection
-    application.add_handler(CallbackQueryHandler(language_callback, pattern="^lang_"))
     
     # Main menu
     application.add_handler(CallbackQueryHandler(main_menu_callback, pattern="^main_menu$"))
