@@ -65,7 +65,7 @@ async def post_init(application: Application) -> None:
     logger.info("Initializing database...")
     await init_db()
     logger.info("Database initialized successfully!")
-    logger.info("🚀 Vezer Shop Bot is running!")
+    logger.info("Vezer Shop Bot is running!")
 
 
 async def error_handler(update: Update, context) -> None:
